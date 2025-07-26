@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Carousel } from 'react-bootstrap'
+import { Carousel, Container } from 'react-bootstrap'
 import cheesecake from "../assets/images/cheesecake.jpg";
 import chocolate_cake from "../assets/images/chocolate_cake.jpg";
 import donuts from "../assets/images/donuts.jpg";
@@ -16,21 +16,24 @@ const images = [
 
 export default function Home() {
   return (
-    <section className="min-h-screen w-full flex flex-col relative">
-      <div className="w-full mx-auto flex flex-col sm:mt-36 mt-20 c-space gap-3">
-        <Carousel interval={3000}>
-          {images.map((src, index) => (
-            <Carousel.Item key={index}>
-              <img
-                className="d-block "
-                src={src}
-                alt={`Slide ${index + 1}`}
-                style={{ height: "400px", objectFit: "cover" }}
-              />
-            </Carousel.Item>
-          ))}
-        </Carousel>
+    <section id="home" className="container-fluid d-flex align items-center justify-content-center"
+    style={{minHeight: '100vh', width: '100%'}}>
+      <div className="w-100">
+        <Container className="text-center">
+           <Carousel fade interval={3000}>
+            {images.map((src, index) => (
+              <Carousel.Item key={index}>
+                <img
+                  className="d-block mx-auto"
+                  src={src}
+                  alt={`Slide ${index + 1}`}
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </Container>
       </div>
-    </section>   
+    </section>
+      
   );
 }

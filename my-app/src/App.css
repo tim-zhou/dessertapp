@@ -49,3 +49,17 @@ section {
 p {
   color: #5a2a44;
 }
+
+#menu h2 {
+  color: #7f2e5e;
+  font-weight: bold;
+}
+
+.card-title {
+  color: #5a2a44;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #6c4f5e;
+}
