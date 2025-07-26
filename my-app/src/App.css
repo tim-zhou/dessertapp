@@ -1,41 +1,51 @@
 body {
-  margin: 0;
+  background-color: white;
+  color: #5a2a44; /* dark pinkish purple text */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   scroll-behavior: smooth;
-  background-color: #fff0f5;
-}
-
-.section {
-  min-height: 100vh;
-  padding-top: 100px;
-  padding-bottom: 60px;
-  font-size: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar {
-  background-color: white !important;
+  background-color: #ffe4ec !important; /* light pink */
 }
 
-.navbar-brand {
-  font-weight: bold;
-  color: #ff69b4 !important;
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: #7f2e5e !important; /* medium pink */
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.nav-link {
-  color: #ff69b4 !important;
+.navbar .nav-link:hover,
+.navbar .navbar-brand:hover {
+  color: #bf5f82 !important; /* lighter pink on hover */
 }
 
-.nav-link:hover {
-  text-decoration: underline;
+section {
+  padding: 50px 15px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
 }
 
-.btn.nav-link {
-  background: none;
-  border: none;
-  color: #ff69b4;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
+#home {
+  background-color: white;
+}
+
+#about {
+  background-color: #fff0f6; /* very light pink */
+}
+
+.carousel-item img {
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(191, 95, 130, 0.3);
+  max-height: 600px;
+  object-fit: cover;
+}
+
+p {
+  color: #5a2a44;
 }

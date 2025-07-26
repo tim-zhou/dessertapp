@@ -1,36 +1,41 @@
 import React from 'react';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 
-const Navbar = () => {
-  const scrollTo = (id) => {
-    const section = document.getElementById(id);
-    if (section) section.scrollIntoView({ behavior: 'smooth' });
+const NaviBar = () => {
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top border-bottom shadow-sm">
-      <div className="container">
-        <a className="navbar-brand text-pink" onClick={() => scrollTo('home')} style={{ cursor: 'pointer' }}>
-          🍰 Sweet Bites
-        </a>
-        <div className="collapse navbar-collapse">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <button className="btn nav-link" onClick={() => scrollTo('home')}>Home</button>
-            </li>
-            <li className="nav-item">
-              <button className="btn nav-link" onClick={() => scrollTo('about')}>About Us</button>
-            </li>
-            <li className="nav-item">
-              <button className="btn nav-link" onClick={() => scrollTo('menu')}>Menu</button>
-            </li>
-            <li className="nav-item">
-              <button className="btn nav-link" onClick={() => scrollTo('contact')}>Contact Us</button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <Navbar bg="" expand="lg" fixed="top" className="shadow-sm navbar">
+      <Container>
+        <Navbar.Brand href="#home" onClick={e => handleNavClick(e, 'home')}>
+          Sweet Bites
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link href="#home" onClick={e => handleNavClick(e, 'home')}>
+              Home
+            </Nav.Link>
+            <Nav.Link href="#about" onClick={e => handleNavClick(e, 'about')}>
+              About Us
+            </Nav.Link>
+            <Nav.Link href="#menu" onClick={e => handleNavClick(e, 'menu')}>
+              Menu
+            </Nav.Link>
+            <Nav.Link href="#contact" onClick={e => handleNavClick(e, 'contact')}>
+              Contact Us
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default NaviBar;
