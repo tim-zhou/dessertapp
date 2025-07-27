@@ -8,7 +8,7 @@ const Menu = () => {
 
   useEffect(() => {
     // Fetch menu items from Node.js Express backend
-    fetch('https://dessertbackend.onrender.com/') // Adjust this URL for deployment
+    fetch('https://my-backend.onrender.com/api/menu') // Adjust this URL for deployment
       .then(res => res.json())
       .then(data => {
         // Split into desserts and drinks based on category
