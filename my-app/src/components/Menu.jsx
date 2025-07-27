@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 
+// Menu component fetches from Express backend and splits items by category
 const Menu = () => {
-  cconst [desserts, setDesserts] = useState([]);
+  const [desserts, setDesserts] = useState([]);
   const [drinks, setDrinks] = useState([]);
 
   useEffect(() => {
-    fetch('/api/menu')
+    // Fetch menu items from Node.js Express backend
+    fetch('https://dessertbackend.onrender.com/') // Adjust this URL for deployment
       .then(res => res.json())
       .then(data => {
+        // Split into desserts and drinks based on category
         const dessertsData = data.filter(item => item.category === 'dessert');
         const drinksData = data.filter(item => item.category === 'drink');
 
@@ -18,11 +21,12 @@ const Menu = () => {
       .catch(err => console.error('Error fetching menu:', err));
   }, []);
 
+  // Renders a list of Bootstrap cards
   const renderCards = (items) =>
     items.map((item, index) => (
       <Col key={index} md={4} className="mb-4">
         <Card>
-          <Card.Img variant="top" src={item.image} />
+          <Card.Img variant="top" src={item.image} style={{ height: '250px', objectFit: 'cover' }} />
           <Card.Body>
             <Card.Title>{item.name}</Card.Title>
             <Card.Text>{item.description}</Card.Text>
