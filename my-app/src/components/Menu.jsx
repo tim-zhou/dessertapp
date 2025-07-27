@@ -2,17 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 
 const Menu = () => {
-  const [desserts, setDesserts] = useState([]);
+  cconst [desserts, setDesserts] = useState([]);
   const [drinks, setDrinks] = useState([]);
 
   useEffect(() => {
     fetch('/api/menu')
-      .then((res) => res.json())
-      .then((data) => {
-        setDesserts(data.desserts || []);
-        setDrinks(data.drinks || []);
+      .then(res => res.json())
+      .then(data => {
+        const dessertsData = data.filter(item => item.category === 'dessert');
+        const drinksData = data.filter(item => item.category === 'drink');
+
+        setDesserts(dessertsData);
+        setDrinks(drinksData);
       })
-      .catch((err) => console.error('Error fetching menu:', err));
+      .catch(err => console.error('Error fetching menu:', err));
   }, []);
 
   const renderCards = (items) =>
