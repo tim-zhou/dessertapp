@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { getMenuData } from '../data/menuData';
 
 const Menu = () => {
-  const [menu, setMenu] = useState({ desserts: [], drinks: [] });
+  const [desserts, setDesserts] = useState([]);
+  const [drinks, setDrinks] = useState([]);
 
   useEffect(() => {
-    getMenuData().then(setMenu);
+    fetch('/api/menu')
+      .then((res) => res.json())
+      .then((data) => {
+        setDesserts(data.desserts || []);
+        setDrinks(data.drinks || []);
+      })
+      .catch((err) => console.error('Error fetching menu:', err));
   }, []);
 
-  const renderItems = (items) =>
-    items.map((item, idx) => (
-      <Col md={6} lg={4} key={idx} className="mb-4">
-        <Card className="h-100 shadow-sm">
-          <Card.Img
-            variant="top"
-            src={item.image}
-            alt={item.name}
-            style={{ height: '200px', objectFit: 'cover' }}
-          />
+  const renderCards = (items) =>
+    items.map((item, index) => (
+      <Col key={index} md={4} className="mb-4">
+        <Card>
+          <Card.Img variant="top" src={item.image} />
           <Card.Body>
             <Card.Title>{item.name}</Card.Title>
             <Card.Text>{item.description}</Card.Text>
@@ -28,13 +29,15 @@ const Menu = () => {
     ));
 
   return (
-    <section id="menu" style={{ backgroundColor: '#fff8f2', padding: '60px 0' }}>
-      <Container>
-        <h2 className="text-center mb-4">Desserts</h2>
-        <Row>{renderItems(menu.desserts)}</Row>
+    <section id="menu" className="py-5 bg-white w-100">
+      <Container className="text-center">
+        <h2 className="mb-4">Menu</h2>
 
-        <h2 className="text-center mt-5 mb-4">Drinks</h2>
-        <Row>{renderItems(menu.drinks)}</Row>
+        <h4>Desserts</h4>
+        <Row>{renderCards(desserts)}</Row>
+
+        <h4 className="mt-5">Drinks</h4>
+        <Row>{renderCards(drinks)}</Row>
       </Container>
     </section>
   );
