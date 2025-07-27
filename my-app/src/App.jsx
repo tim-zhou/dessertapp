@@ -11,10 +11,29 @@ function App() {
     <>
       <NaviBar />
       <div style={{paddingTop: '70px' }}>
-        <Home />
-        <AboutUs />
-        <Menu />
-        <ContactUs />
+        <section className="section-container">
+          <div className="section-content">
+            <Home />
+          </div>
+        </section>
+
+        <section className="section-container">
+          <div className="section-content">
+            <AboutUs />
+          </div>
+        </section>
+
+        <section className="section-container">
+          <div className="section-content">
+            <Menu />
+          </div>
+        </section>
+
+        <section className="section-container">
+          <div className="section-content">
+            <ContactUs />
+          </div>
+        </section>
       </div>
         
     </>
